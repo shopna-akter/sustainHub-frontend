@@ -10,7 +10,8 @@ import {
   updateIdea,
   deleteIdea,
 } from '@/services/ideaService';
-import { IdeaStatus } from '@prisma/client';
+type IdeaStatus = 'PENDING' | 'APPROVED' | 'REJECTED';
+
 
 interface Idea {
   id: string;
