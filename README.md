@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Sustainability Idea Hub 🌱
 
-First, run the development server:
+A platform where users can submit, explore, and vote on innovative sustainability ideas. Built with modern technologies and clean architecture to promote eco-conscious collaboration.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🔗 Live URLs
+
+- **Frontend:** [https://sustain-hub-frontend.vercel.app](https://sustain-hub-frontend.vercel.app)
+- **Backend:** [https://sustain-hub-backend.vercel.app](https://sustain-hub-backend.vercel.app)
+- **Admin Login Credentials:**
+  - Email: `admin@example.com`
+  - Password: `Password123` 
+
+---
+
+## 🧰 Tech Stack
+
+### Frontend
+- [Next.js 14 (App Router)](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [ShadCN UI](https://ui.shadcn.com/)
+- [Zod](https://zod.dev/) – for form validation
+- [Lucide Icons](https://lucide.dev/)
+
+### Backend
+- Node.js + Express.js
+- PostgreSQL (hosted on Render)
+- Prisma ORM
+- JWT Authentication
+- SSLCommerz/ShurjoPay Payment Integration
+
+---
+
+## 🧩 Features
+
+### 🧑 User Features
+- Register/Login with JWT
+- View all ideas (public and free)
+- View only titles of paid ideas (must unlock)
+- Vote on ideas (upvote/downvote)
+- Comment on ideas
+- Filter by category
+- Unlock premium ideas via payment
+
+### 🛠️ Admin Features
+- Dashboard for user management
+- Approve/Reject ideas
+- Manage categories
+- View all submitted ideas
+- Role-based access control
+
+---
+
+## 📁 Folder Structure
+
+```
+src/
+│
+├── app/
+│   ├── (WithCommonLayout)/          # Public pages layout (Home, Ideas, etc.)
+│   ├── (WithDashboardLayout)/       # Dashboard layout (Admin/Member dashboard)
+│   ├── dashboard/
+│   │   ├── ideas/                   # Idea CRUD routes for members
+│   │   └── ...                      # Additional dashboard features
+│   ├── components/                  # UI components
+│   ├── lib/                         # Utility functions
+│   ├── services/                    # API interaction (frontend services)
+│   ├── types/                       # Type definitions
+│   └── hooks/                       # Custom hooks
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⚙️ Getting Started (Local Setup)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Clone the Repository
 
-## Learn More
+```bash
+git clone https://github.com/shopna-akter/sustainHub-frontend.git
+cd sustainability-idea-hub-frontend
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 2. Install Dependencies
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 3. Setup Environment Variables
 
-## Deploy on Vercel
+Create a `.env.local` file:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```env
+NEXT_PUBLIC_API_BASE_URL=https://your-backend.vercel.app/api
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 4. Run the Development Server
+
+```bash
+pnpm dev
+```
+
+App should be running on `http://localhost:3000`.
+
+---
+
+## 🚀 Deployment Guide
+
+We used **Vercel** for frontend deployment:
+
+```bash
+pnpm build
+vercel
+```
+
+- Provide environment variable: `NEXT_PUBLIC_API_BASE_URL`
+- Choose default options unless customization needed
+---
