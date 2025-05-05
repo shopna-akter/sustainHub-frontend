@@ -2,11 +2,22 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { toast } from 'sonner';
+import { logoutUser } from '@/services/authService/index';
+import { Button } from '../ui/button';
 
-export const Navbar = () => {
+interface NavbarProps {
+  user: {
+    id: string;
+    name: string;
+    role: 'admin' | 'member';
+  } | null;
+}
+
+export const Navbar = ({ user }: NavbarProps) => {
   const pathname = usePathname();
-  const isLoggedIn = false;
+  const router = useRouter();
 
   const navLinks = [
     { href: '/', label: 'Home' },
@@ -15,6 +26,16 @@ export const Navbar = () => {
     { href: '/about', label: 'About Us' },
     { href: '/blog', label: 'Blog' },
   ];
+
+  const handleLogout = async () => {
+    const res = await logoutUser();
+    if (res.success) {
+      toast.success(res.message || 'Logged out successfully');
+      router.push('/');
+    } else {
+      toast.error(res.message || 'Failed to logout');
+    }
+  };
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
@@ -39,10 +60,28 @@ export const Navbar = () => {
               {label}
             </Link>
           ))}
-          {isLoggedIn ? (
-            <Link href="/profile" className="text-sm text-gray-700 hover:text-green-700">My Profile</Link>
+          {user ? (
+            <>
+              <Link
+                href="/profile"
+                className="text-sm text-gray-700 hover:text-green-700"
+              >
+                My Profile
+              </Link>
+              <Button
+                onClick={handleLogout}
+                className="bg-red-600 text-gray-100 px-4 cursor-pointer py-1 rounded hover:bg-red-700 transition"
+              >
+                Logout
+              </Button>
+            </>
           ) : (
-            <Link href="/login" className="text-sm text-gray-700 hover:text-green-700">Login / Register</Link>
+            <Link
+              href="/login"
+              className="text-sm text-gray-700 hover:text-green-700"
+            >
+              Login / Register
+            </Link>
           )}
         </nav>
       </div>
