@@ -60,3 +60,14 @@ export const loginUser = async (userData: FieldValues) => {
       return null;
     }
   };
+  export const logoutUser = async () => {
+    try {
+      (await cookies()).delete("accessToken");
+      return { success: true, message: "Logged out successfully" };
+    } catch (error: any) {
+      return {
+        success: false,
+        message: error?.message || "Logout failed",
+      };
+    }
+  };
