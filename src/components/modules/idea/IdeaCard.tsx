@@ -1,5 +1,6 @@
 import { type Idea } from '@/types';
 import Link from 'next/link';
+import { VoteButtons } from './VoteButtons';
 
 export const IdeaCard = ({ idea }: { idea: Idea }) => (
   <div className="rounded-lg border p-4 shadow-sm">
